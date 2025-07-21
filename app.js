@@ -4,6 +4,7 @@ let scoreCorrect = 0;
 let scoreWrong = 0;
 
 const categorySelect = document.getElementById("category-select");
+const gameSelect = document.getElementById("game-select");
 const startBtn = document.getElementById("start-btn");
 const questionBox = document.getElementById("question-box");
 const answersBox = document.getElementById("answers");
@@ -24,29 +25,50 @@ function updateScoreBoard() {
   scoreWrongSpan.textContent = `❌ Wrong: ${scoreWrong}`;
 }
 
+// Hide all game UIs before starting a new game
+function hideAllGames() {
+  setUIState(false);
+  const flash = document.getElementById('flashcard-container');
+  if (flash) flash.style.display = "none";
+  const drag = document.getElementById('drag-match-container');
+  if (drag) drag.style.display = "none";
+}
+
 startBtn.onclick = () => {
   const category = categorySelect.value;
+  const game = gameSelect ? gameSelect.value : "quiz";
   if (!category) {
     alert("Please select a category.");
     return;
   }
+  if (!game) {
+    alert("Please select a game mode.");
+    return;
+  }
+  hideAllGames();
 
-  fetch(`questions/${category}.json`)
-    .then(res => res.json())
-    .then(data => {
-      questions = shuffleArray(data);
-      currentIndex = 0;
-      scoreCorrect = 0;
-      scoreWrong = 0;
-      setUIState(true);
-      updateScoreBoard();
-      showQuestion();
-    })
-    .catch(err => {
-      console.error("Failed to load questions:", err);
-      alert("Could not load questions. Check your console.");
-      setUIState(false);
-    });
+  if (game === "quiz") {
+    fetch(`questions/${category}.json`)
+      .then(res => res.json())
+      .then(data => {
+        questions = shuffleArray(data);
+        currentIndex = 0;
+        scoreCorrect = 0;
+        scoreWrong = 0;
+        setUIState(true);
+        updateScoreBoard();
+        showQuestion();
+      })
+      .catch(err => {
+        console.error("Failed to load questions:", err);
+        alert("Could not load questions. Check your console.");
+        setUIState(false);
+      });
+  } else if (game === "flashcards") {
+    window.startFlashcards && window.startFlashcards(category);
+  } else if (game === "dragmatch") {
+    window.startDragMatch && window.startDragMatch(category);
+  }
 };
 
 function showQuestion() {
