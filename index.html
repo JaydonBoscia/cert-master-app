@@ -31,59 +31,5 @@
     <script src="app.js"></script>
     <script src="src/games/flashcards.js"></script>
     <script src="src/games/drag-match.js"></script>
-    <script>
-      // Hide all game UIs before starting a new game
-      function hideAllGames() {
-        document.getElementById('question-box').style.display = "none";
-        document.getElementById('answers').style.display = "none";
-        document.getElementById('next-btn').style.display = "none";
-        document.getElementById('score-board').style.display = "none";
-        const flash = document.getElementById('flashcard-container');
-        if (flash) flash.style.display = "none";
-        const drag = document.getElementById('drag-match-container');
-        if (drag) drag.style.display = "none";
-      }
-
-      document.getElementById('start-btn').onclick = function() {
-        const category = document.getElementById('category-select').value;
-        const game = document.getElementById('game-select').value;
-        if (!category) {
-          alert("Please select a category.");
-          return;
-        }
-        if (!game) {
-          alert("Please select a game mode.");
-          return;
-        }
-        hideAllGames();
-        if (game === "quiz") {
-          // Quiz mode (default app.js)
-          window.setUIState && setUIState(true);
-          window.updateScoreBoard && updateScoreBoard();
-          window.startBtn && (window.startBtn.onclick = null); // prevent double binding
-          // Simulate quiz start
-          fetch(`questions/${category}.json`)
-            .then(res => res.json())
-            .then(data => {
-              window.questions = shuffleArray(data);
-              window.currentIndex = 0;
-              window.scoreCorrect = 0;
-              window.scoreWrong = 0;
-              setUIState(true);
-              updateScoreBoard();
-              showQuestion();
-            });
-        } else if (game === "flashcards") {
-          window.startFlashcards && startFlashcards(category);
-        } else if (game === "dragmatch") {
-          window.startDragMatch && startDragMatch(category);
-        }
-      };
-
-      // Helper for quiz mode
-      function shuffleArray(arr) {
-        return [...arr].sort(() => Math.random() - 0.5);
-      }
-    </script>
 </body>
 </html>

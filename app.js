@@ -109,9 +109,6 @@ function shuffleArray(arr) {
   return [...arr].sort(() => Math.random() - 0.5);
 }
 
-// Initialize UI state
-setUIState(false);
-
 // Optionally, populate categorySelect if not static in HTML
 // Example:
 // categorySelect.innerHTML = `
