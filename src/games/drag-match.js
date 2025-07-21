@@ -64,6 +64,15 @@ window.startDragMatch = function(category) {
       dragData = data;
       dragScore = 0;
       dragContainer.style.display = "block";
+      // Hide other game UIs if present
+      const quizBox = document.getElementById('question-box');
+      const quizAns = document.getElementById('answers');
+      const quizNext = document.getElementById('next-btn');
+      const scoreBoard = document.getElementById('score-board');
+      if (quizBox) quizBox.style.display = "none";
+      if (quizAns) quizAns.style.display = "none";
+      if (quizNext) quizNext.style.display = "none";
+      if (scoreBoard) scoreBoard.style.display = "none";
       renderDragMatch();
     })
     .catch(err => {
@@ -80,14 +89,14 @@ function renderDragMatch() {
 
   // Prepare pairs and shuffle
   dragPairs = dragData
-    .slice(0, 6) // Show 6 pairs at a time for clarity
+    .slice(0, Math.min(6, dragData.length)) // Show up to 6 pairs at a time for clarity
     .map(q => ({ question: q.question, answer: q.correct }));
 
   const shuffledQuestions = shuffleArray(dragPairs.map(p => p.question));
   const shuffledAnswers = shuffleArray(dragPairs.map(p => p.answer));
 
   // Render questions as draggable items
-  shuffledQuestions.forEach((qText, idx) => {
+  shuffledQuestions.forEach((qText) => {
     const qDiv = document.createElement("div");
     qDiv.className = "drag-question";
     qDiv.textContent = qText;
@@ -110,7 +119,7 @@ function renderDragMatch() {
   });
 
   // Render answers as drop targets
-  shuffledAnswers.forEach((aText, idx) => {
+  shuffledAnswers.forEach((aText) => {
     const aDiv = document.createElement("div");
     aDiv.className = "drag-answer";
     aDiv.textContent = aText;
@@ -162,3 +171,4 @@ function renderDragMatch() {
 
 function shuffleArray(arr) {
   return [...arr].sort(() => Math.random() - 0.5);
+}
