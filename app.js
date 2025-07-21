@@ -48,22 +48,7 @@ startBtn.onclick = () => {
   hideAllGames();
 
   if (game === "quiz") {
-    fetch(`questions/${category}.json`)
-      .then(res => res.json())
-      .then(data => {
-        questions = shuffleArray(data);
-        currentIndex = 0;
-        scoreCorrect = 0;
-        scoreWrong = 0;
-        setUIState(true);
-        updateScoreBoard();
-        showQuestion();
-      })
-      .catch(err => {
-        console.error("Failed to load questions:", err);
-        alert("Could not load questions. Check your console.");
-        setUIState(false);
-      });
+    window.startQuizGame && window.startQuizGame(category);
   } else if (game === "flashcards") {
     window.startFlashcards && window.startFlashcards(category);
   } else if (game === "dragmatch") {
