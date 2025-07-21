@@ -1,0 +1,67 @@
+[
+  {
+    "question": "Which encryption protocol is used with WPA2?",
+    "answers": ["TKIP", "AES", "WEP", "RC4"],
+    "correct": "AES"
+  },
+  {
+    "question": "What is the purpose of a firewall?",
+    "answers": ["Encrypt data", "Stop viruses", "Control network traffic", "Boost signal"],
+    "correct": "Control network traffic"
+  },
+  {
+    "question": "Which port does HTTPS use by default?",
+    "answers": ["80", "443", "21", "25"],
+    "correct": "443"
+  },
+  {
+    "question": "What is the main function of a VPN?",
+    "answers": ["Increase bandwidth", "Provide secure remote access", "Block malware", "Monitor traffic"],
+    "correct": "Provide secure remote access"
+  },
+  {
+    "question": "Which type of attack involves intercepting communications between two parties?",
+    "answers": ["Phishing", "Man-in-the-middle", "DoS", "Brute force"],
+    "correct": "Man-in-the-middle"
+  },
+  {
+    "question": "What does the principle of least privilege mean?",
+    "answers": [
+      "Users have access to all resources",
+      "Users have access only to what they need",
+      "Users have no access",
+      "Users share all passwords"
+    ],
+    "correct": "Users have access only to what they need"
+  },
+  {
+    "question": "Which protocol is used to securely transfer files over the Internet?",
+    "answers": ["FTP", "SFTP", "Telnet", "SMTP"],
+    "correct": "SFTP"
+  },
+  {
+    "question": "What is social engineering?",
+    "answers": [
+      "A type of encryption",
+      "Manipulating people to gain confidential information",
+      "A firewall technique",
+      "A network protocol"
+    ],
+    "correct": "Manipulating people to gain confidential information"
+  },
+  {
+    "question": "Which device is used to segment a network into multiple collision domains?",
+    "answers": ["Hub", "Switch", "Repeater", "Modem"],
+    "correct": "Switch"
+  },
+  {
+    "question": "What is the primary purpose of multifactor authentication (MFA)?",
+    "answers": [
+      "To speed up login",
+      "To provide redundancy",
+      "To increase security by requiring multiple forms of verification",
+      "To encrypt data"
+    ],
+    "correct": "To increase security by requiring multiple forms of verification"
+  }
+]

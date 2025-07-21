@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Which protocol prevents switching loops?",
+    "answers": ["STP", "RIP", "OSPF", "BGP"],
+    "correct": "STP"
+  },
+  {
+    "question": "What port does SSH use?",
+    "answers": ["21", "22", "23", "443"],
+    "correct": "22"
+  },
+  {
+    "question": "Which layer of the OSI model is responsible for routing?",
+    "answers": ["Data Link", "Network", "Transport", "Session"],
+    "correct": "Network"
+  },
+  {
+    "question": "What is the default administrative distance of OSPF?",
+    "answers": ["90", "100", "110", "120"],
+    "correct": "110"
+  },
+  {
+    "question": "Which command displays the routing table on a Cisco router?",
+    "answers": ["show ip route", "show interfaces", "show running-config", "show version"],
+    "correct": "show ip route"
+  },
+  {
+    "question": "What is the purpose of NAT (Network Address Translation)?",
+    "answers": [
+      "Encrypt data",
+      "Allow private IP addresses to access the Internet",
+      "Prevent switching loops",
+      "Assign MAC addresses"
+    ],
+    "correct": "Allow private IP addresses to access the Internet"
+  },
+  {
+    "question": "Which protocol is used to automatically assign IP addresses to devices on a network?",
+    "answers": ["DNS", "DHCP", "FTP", "SNMP"],
+    "correct": "DHCP"
+  },
+  {
+    "question": "What is the maximum length of a standard Ethernet cable (Cat5e/Cat6)?",
+    "answers": ["50 meters", "100 meters", "185 meters", "500 meters"],
+    "correct": "100 meters"
+  },
+  {
+    "question": "Which command is used to enter privileged EXEC mode on a Cisco device?",
+    "answers": ["enable", "configure terminal", "show running-config", "exit"],
+    "correct": "enable"
+  },
+  {
+    "question": "What is the main function of ARP (Address Resolution Protocol)?",
+    "answers": [
+      "Resolve IP addresses to MAC addresses",
+      "Assign IP addresses",
+      "Encrypt data",
+      "Route packets"
+    ],
+    "correct": "Resolve IP addresses to MAC addresses"
+  }
+]
