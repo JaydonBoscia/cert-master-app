@@ -1,16 +1,27 @@
 let currentIndex = 0;
 let questions = [];
+let scoreCorrect = 0;
+let scoreWrong = 0;
 
 const categorySelect = document.getElementById("category-select");
 const startBtn = document.getElementById("start-btn");
 const questionBox = document.getElementById("question-box");
 const answersBox = document.getElementById("answers");
 const nextBtn = document.getElementById("next-btn");
+const scoreBoard = document.getElementById("score-board");
+const scoreCorrectSpan = document.getElementById("score-correct");
+const scoreWrongSpan = document.getElementById("score-wrong");
 
 function setUIState(isQuizActive) {
   questionBox.style.display = isQuizActive ? "block" : "none";
   answersBox.style.display = isQuizActive ? "block" : "none";
   nextBtn.style.display = isQuizActive ? "inline-block" : "none";
+  scoreBoard.style.display = isQuizActive ? "block" : "none";
+}
+
+function updateScoreBoard() {
+  scoreCorrectSpan.textContent = `✅ Correct: ${scoreCorrect}`;
+  scoreWrongSpan.textContent = `❌ Wrong: ${scoreWrong}`;
 }
 
 startBtn.onclick = () => {
@@ -25,7 +36,10 @@ startBtn.onclick = () => {
     .then(data => {
       questions = shuffleArray(data);
       currentIndex = 0;
+      scoreCorrect = 0;
+      scoreWrong = 0;
       setUIState(true);
+      updateScoreBoard();
       showQuestion();
     })
     .catch(err => {
@@ -49,10 +63,13 @@ function showQuestion() {
       if (answer === q.correct) {
         btn.style.background = "#c8e6c9";
         btn.innerText += " ✅";
+        scoreCorrect++;
       } else {
         btn.style.background = "#ffcdd2";
         btn.innerText += " ❌";
+        scoreWrong++;
       }
+      updateScoreBoard();
       // Disable all buttons after answering
       Array.from(answersBox.children).forEach(b => b.disabled = true);
     };
@@ -78,4 +95,6 @@ setUIState(false);
 // categorySelect.innerHTML = `
 //   <option value="">Select Category</option>
 //   <option value="securityplus">Security+</option>
-//   <option value=
+//   <option value="networkplus">Network+</option>
+//   <option value="cloudplus">Cloud+</option>
+// `;
